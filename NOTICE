@@ -1,0 +1,99 @@
+ANOLISA
+Copyright 2026 Alibaba Cloud
+
+This product includes software developed at Alibaba Cloud.
+
+=========================================================================
+Derived Works
+=========================================================================
+
+copilot-shell (src/copilot-shell/)
+  Based on Qwen Code (https://github.com/QwenLM/qwen-code),
+  which is itself derived from Gemini CLI.
+  Copyright 2025 Google LLC
+  Copyright 2025 Qwen Team
+  Licensed under the Apache License, Version 2.0
+
+linux-sandbox (src/agent-sec-core/linux-sandbox/)
+  Based on Codex linux-sandbox
+  (https://github.com/openai/codex/tree/main/codex-rs/linux-sandbox)
+  Copyright 2025 OpenAI
+  Licensed under the Apache License, Version 2.0
+
+=========================================================================
+Third-Party Software
+=========================================================================
+
+ripgrep (src/copilot-shell/dist/)
+  Vendored binary
+  Copyright Andrew Gallant
+  Licensed under the MIT License / The Unlicense
+
+shell-scripting skill (src/os-skills/system-admin/shell-scripting/)
+  Copyright maddhruv (https://github.com/maddhruv)
+  Source: https://github.com/AbsolutelySkilled/AbsolutelySkilled
+  Licensed under the MIT License
+
+regex-mastery skill (src/os-skills/system-admin/regex-mastery/)
+  Copyright maddhruv (https://github.com/maddhruv)
+  Source: https://github.com/AbsolutelySkilled/AbsolutelySkilled
+  Licensed under the MIT License
+
+=========================================================================
+Test Assets
+=========================================================================
+
+terminal-bench (src/copilot-shell/integration-tests/terminal-bench/)
+  Copyright 2025 Laude Institute
+  Source: https://github.com/laude-institute/terminal-bench
+  Licensed under the Apache License, Version 2.0
+
+  The swe-bench-astropy-1 test case contains derived content from:
+  - Astropy Project (BSD-3-Clause License)
+    https://github.com/astropy/astropy
+
+=========================================================================
+Rust Dependencies (src/agentsight/)
+=========================================================================
+
+The agentsight component includes the following Rust crate dependencies:
+
+libbpf-rs (v0.23.3)
+  Source: https://crates.io/crates/libbpf-rs
+  Licensed under the BSD 2-Clause License
+  (Original dual license: LGPL-2.1-only OR BSD-2-Clause; BSD-2-Clause elected)
+
+tokenizers (v0.21)
+  Source: https://crates.io/crates/tokenizers
+  Licensed under the Apache License, Version 2.0
+
+log-mdc (v0.1.0)
+  Source: https://crates.io/crates/log-mdc
+  Licensed under the Apache License, Version 2.0
+  (Original dual license: MIT/Apache-2.0; Apache-2.0 elected)
+
+cached_proc_macro_types
+  Source: https://crates.io/crates/cached_proc_macro_types
+  Licensed under the MIT License
+
+tagptr
+  Source: https://crates.io/crates/tagptr
+  Licensed under the Apache License, Version 2.0
+  (Original dual license: MIT/Apache-2.0; Apache-2.0 elected)
+
+unicode_categories
+  Source: https://crates.io/crates/unicode_categories
+  Licensed under the Apache License, Version 2.0
+  (Original dual license: MIT OR Apache-2.0; Apache-2.0 elected)
+
+unicode-normalization-alignments
+  Source: https://crates.io/crates/unicode-normalization-alignments
+  Licensed under the Apache License, Version 2.0
+  (Original dual license: MIT/Apache-2.0; Apache-2.0 elected)
+
+unsafe-any-ors
+  Source: https://crates.io/crates/unsafe-any-ors
+  Licensed under the MIT License
+
+Additional Rust dependencies are listed in Cargo.toml with their respective licenses.
+All dependencies are used in compliance with their original license terms.

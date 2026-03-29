@@ -1,0 +1,15 @@
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# LLM tools
+.claude/
+.qoder/
+CLAUDE.md
+AGENTS.md

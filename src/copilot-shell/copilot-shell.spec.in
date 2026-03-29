@@ -1,0 +1,86 @@
+%define anolis_release 1
+%global debug_package %{nil}
+
+Name:           copilot-shell
+Version:        @VERSION@
+Release:        %{anolis_release}%{?dist}
+Summary:        Copilot Shell - Entrance to AI-native OS
+License:        Apache-2.0
+URL:            https://github.com/alibaba/anolisa
+Source0:        %{name}-%{version}.tar.gz
+
+BuildRequires:  nodejs >= 20
+Requires:       nodejs >= 20
+Requires(post):	  lua
+Requires(postun): lua
+Provides:       /usr/bin/co /usr/bin/copilot /usr/bin/cosh
+
+%description
+Copilot Shell - Entrance to AI-native OS.
+AI-powered assistant that helps developers through natural language interaction.
+
+%prep
+%setup -q
+
+%build
+npm ci --ignore-scripts
+npm run bundle
+npm run prepare:package
+
+%install
+rm -rf %{buildroot}
+mkdir -p %{buildroot}%{_datadir}/%{name}
+mkdir -p %{buildroot}%{_datadir}/%{name}/hooks
+mkdir -p %{buildroot}%{_bindir}
+
+# Copy dist contents
+cp -pr dist/* %{buildroot}%{_datadir}/%{name}/
+cp -pr hooks/* %{buildroot}%{_datadir}/%{name}/hooks/
+
+# Create symlink for CLI command
+ln -sf %{_datadir}/%{name}/cli.js %{buildroot}%{_bindir}/co
+ln -sf %{_datadir}/%{name}/cli.js %{buildroot}%{_bindir}/copilot
+ln -sf %{_datadir}/%{name}/cli.js %{buildroot}%{_bindir}/cosh
+
+%files
+%license LICENSE
+%doc README.md
+%{_datadir}/%{name}
+%{_bindir}/co
+%{_bindir}/copilot
+%{_bindir}/cosh
+
+%post -p <lua>
+nl        = '\n'
+cosh      = '/usr/bin/cosh'..nl
+f = io.open('/etc/shells', 'a+')
+if f then
+  local shells = nl..f:read('*all')..nl
+  if not shells:find(nl..cosh) then f:write(cosh) end
+  f:close()
+end
+
+%postun -p <lua>
+-- Run it only if we are uninstalling
+if arg[2] == 0
+then
+  t={}
+  for line in io.lines("/etc/shells")
+  do
+    if line ~= "/usr/bin/cosh"
+    then
+      table.insert(t,line)
+    end
+  end
+
+  f = io.open("/etc/shells", "w+")
+  for n,line in pairs(t)
+  do
+    f:write(line.."\n")
+  end
+  f:close()
+end
+
+%changelog
+* Wed Mar 26 2026 Shenglong Zhu <shenglongzhu@linux.alibaba.com> - 2.0.0-1
+- Initial RPM package
